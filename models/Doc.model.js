@@ -18,7 +18,7 @@ const docsSchema = mongoose.Schema({
   spec: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-  }
+  },
 });
 
 const Doc = mongoose.model("Doc", docsSchema);

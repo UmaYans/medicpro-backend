@@ -15,5 +15,3 @@ const serviceSchema = mongoose.Schema({
 const Service = mongoose.model("Service", serviceSchema);
 
 module.exports = Service;
-
-//название цена и страая цена реф на пользователя и реф на доктора..... вывод услуг по определенному доктору акции

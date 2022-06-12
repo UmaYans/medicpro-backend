@@ -7,10 +7,11 @@ module.exports.CategoryController = {
       return res.json(todos);
     } catch (error) {
       return res.status(400).json({
-        error: "Ошибка при выводе: " + error.toString()
+        error: "Ошибка при выводе: " + error.toString(),
       });
     }
   },
+
   postCategory: async (req, res) => {
     try {
       const { name, text } = req.body;
@@ -21,7 +22,8 @@ module.exports.CategoryController = {
       return res.json(cat);
     } catch (error) {
       return res.status(400).json({
-        error: "Ошибка при добавлении: " + error.toString()
-      });    }
+        error: "Ошибка при добавлении: " + error.toString(),
+      });
+    }
   },
 };
