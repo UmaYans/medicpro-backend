@@ -18,8 +18,14 @@ module.exports.CommentController = {
 
   deleteComments: async (req, res) => {
     try {
-      const del = await Comment.findByIdAndDelete(req.params.id);
-      return res.json(del);
+      const comment = await Comment.findById(req.params.id);
+      
+      if (comment.userName.toString() === req.user.id) {
+        await comment.remove();
+        return res.json(comment);
+      }
+
+      return res.status(401).json({ error: "Нету доступа" });
     } catch (error) {
       return res.status(400).json({
         error: "Ошибка при удалении комментария: " + error.toString(),
@@ -37,7 +43,7 @@ module.exports.CommentController = {
       });
     }
   },
-  
+
   getCommentsByUser: async (req, res) => {
     try {
       const getComUser = await Comment.find({ userName: req.params.id });
