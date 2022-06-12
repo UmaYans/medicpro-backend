@@ -14,8 +14,6 @@ module.exports.docsController = {
         eMail,
         desc,
         rating,
-        user,
-        time,
         photo,
       } = req.body;
 
@@ -30,22 +28,39 @@ module.exports.docsController = {
         eMail,
         desc,
         rating,
-        user,
-        time,
         photo,
       });
 
-      return await res.json(doc);
+      return res.json(doc);
     } catch (error) {
-      return res.status(401).json({ error: error.toString() });
+      return res
+        .status(400)
+        .json({ error: "Ошибка при добавлении доктора: " + error.toString() });
     }
   },
   getDocs: async (req, res) => {
     try {
       const docs = await Doc.find();
-      return await res.json(docs);
+      return res.json(docs);
     } catch (error) {
-      return res.status(500).json({ error: error.toString() });
+      return res
+        .status(400)
+        .json({
+          error: "Ошибка при выводе всех докторов: " + error.toString(),
+        });
+    }
+  },
+  getDocsById: async (req, res) => {
+    try {
+      const doc = await Doc.findById(req.params.id);
+
+      return res.json(doc);
+    } catch (error) {
+      return res
+      .status(400)
+      .json({
+        error: "Ошибка при выводе докторв по id: " + error.toString(),
+      });
     }
   },
 };

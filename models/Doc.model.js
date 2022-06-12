@@ -6,25 +6,19 @@ const docsSchema = mongoose.Schema({
   age: Number,
   skill: Number,
   telephone: String,
+  eMail: String,
+  desc: String,
+  rating: Number,
+  photo: String,
+
   place: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Pol",
   },
   spec: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Cat",
-  },
-  eMail: String,
-  desc: String,
-  rating: Number,
-  user: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  time: String,
-  photo: String,
+    ref: "Category",
+  }
 });
 
 const Doc = mongoose.model("Doc", docsSchema);

@@ -6,5 +6,6 @@ router.use(require('./comments.route'))
 router.use(require('./categories.route'))
 router.use(require("./pol.route"));
 router.use(require("./services.route") )
+router.use(require("./doc.route") )
 
 module.exports = router;
