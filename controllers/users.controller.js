@@ -74,7 +74,7 @@ module.exports.usersController = {
       return res.json(user);
     } catch (error) {
       return res
-        .status(401)
+        .status(400)
         .json({ error: "Ошибка при выводе пользователя: " + error.toString() });
     }
   },

@@ -4,9 +4,9 @@ const authMiddlewares = require('../models/middlewares/auth.middlewares')
 
 const router = Router()
 
-router.post('/comment', CommentController.postComments)
+router.post('/comment',authMiddlewares, CommentController.postComments)
 router.delete('/comment/:id',authMiddlewares, CommentController.deleteComments)
-router.get('/user/:id', CommentController.getCategoryByUser)
-router.get('/doc/:id', CommentController.getCategoryByDoc)
+router.get('/user/:id',authMiddlewares, CommentController.getCommentsByUser)
+router.get('/doc/:id', CommentController.getCommentsByDoc )
 
 module.exports = router;
