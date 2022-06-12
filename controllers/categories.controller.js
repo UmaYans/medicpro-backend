@@ -7,7 +7,7 @@ module.exports.CategoryController = {
       return res.json(todos);
     } catch (error) {
       res.json({
-        error: "Ошибка при выводе" + error.toString()
+        error: "Ошибка при выводе: " + error.toString()
       });
     }
   },
@@ -21,7 +21,7 @@ module.exports.CategoryController = {
       return res.json(cat);
     } catch (error) {
       res.json({
-        error: "Ошибка при добавлении" + error.toString()
+        error: "Ошибка при добавлении: " + error.toString()
       });    }
   },
 };
