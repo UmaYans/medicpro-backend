@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
 
     if (!authorization) {
       return res.status(401).json({
-        error: "Нету авторизации",
+        error: "Нет авторизации",
       });
     }
     const [type, token] = authorization.split(" ");
@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
     next();
   } catch (error) {
     return res.status(401).json({
-      error: "Netu  Tokena" + error.toString(),
+      error: "Ошибка авторизации:" + error.toString(),
     });
   }
 };
