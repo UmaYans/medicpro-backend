@@ -6,11 +6,12 @@ module.exports.CategoryController = {
       const todos = await Category.find();
       return res.json(todos);
     } catch (error) {
-      res.json({
-        error: "Ошибка при выводе: " + error.toString()
+      return res.status(400).json({
+        error: "Ошибка при выводе: " + error.toString(),
       });
     }
   },
+
   postCategory: async (req, res) => {
     try {
       const { name, text } = req.body;
@@ -20,8 +21,9 @@ module.exports.CategoryController = {
       });
       return res.json(cat);
     } catch (error) {
-      res.json({
-        error: "Ошибка при добавлении: " + error.toString()
-      });    }
+      return res.status(400).json({
+        error: "Ошибка при добавлении: " + error.toString(),
+      });
+    }
   },
 };

@@ -1,4 +1,3 @@
-const hash = require("bcrypt");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
@@ -68,13 +67,14 @@ module.exports.usersController = {
         .json({ error: "Ошибка при авторизации: " + error.toString() });
     }
   },
+
   getUserById: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
       return res.json(user);
     } catch (error) {
       return res
-        .status(401)
+        .status(400)
         .json({ error: "Ошибка при выводе пользователя: " + error.toString() });
     }
   },
