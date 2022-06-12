@@ -11,28 +11,32 @@ module.exports.usersController = {
       const hash = await bcrypt.hash(
         password,
         Number(process.env.BCRYPT_ROUNDS)
-        );
-        
-        const user = await User.create({
-           name,
-           lastName,
-           login,
-          password: hash,
-          telephone,
-          eMail,
-        });
-        console.log(login)
-        return await res.json(user);
+      );
+
+      if (!hash) {
+        return res.status(400).json({ error: "Ощибка хеширования пароля" });
+      }
+
+      const user = await User.create({
+        name,
+        lastName,
+        login,
+        password: hash,
+        telephone,
+        eMail,
+      });
+
+      return await res.json(user);
     } catch (error) {
       return res.status(401).json({
-        error: "Ошибка при регистрации" + error.toString(),
+        error: "Ошибка при регистрации: " + error.toString(),
       });
     }
   },
 
   login: async (req, res) => {
     try {
-      const { name, lastName, login, password, telephone, eMail } = req.body;
+      const { login, password, eMail } = req.body;
       const candidate = await User.findOne({ login });
 
       if (!candidate) {
@@ -59,7 +63,19 @@ module.exports.usersController = {
       });
       return res.json({ token });
     } catch (error) {
-      return res.status(401).json({ error: "Ошибка при авторизации" });
+      return res
+        .status(401)
+        .json({ error: "Ошибка при авторизации: " + error.toString() });
+    }
+  },
+  getUserById: async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+      return res.json(user);
+    } catch (error) {
+      return res
+        .status(401)
+        .json({ error: "Ошибка при выводе пользователя: " + error.toString() });
     }
   },
 };

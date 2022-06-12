@@ -6,7 +6,6 @@ module.exports.ServiceController = {
       const { name, text, price, oldPrice, doc } = req.body;
 
       const service = await create({
-        
         name,
         text,
         price,
@@ -43,8 +42,4 @@ module.exports.ServiceController = {
       res.json(e);
     }
   },
-
-
 };
-
-
