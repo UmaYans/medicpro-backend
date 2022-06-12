@@ -4,9 +4,11 @@ module.exports.CategoryController = {
   getCategory: async (req, res) => {
     try {
       const todos = await Category.find();
-      res.json(todos);
-    } catch (err) {
-      res.json(err);
+      return res.json(todos);
+    } catch (error) {
+      res.json({
+        error: "Ошибка при выводе" + error.toString()
+      });
     }
   },
   postCategory: async (req, res) => {
@@ -16,9 +18,10 @@ module.exports.CategoryController = {
         name,
         text,
       });
-      res.json(cat);
-    } catch (err) {
-      res.json(err);
-    }
+      return res.json(cat);
+    } catch (error) {
+      res.json({
+        error: "Ошибка при добавлении" + error.toString()
+      });    }
   },
 };
