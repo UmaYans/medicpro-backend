@@ -39,13 +39,13 @@ module.exports.usersController = {
       const candidate = await User.findOne({ login });
 
       if (!candidate) {
-        return res.status(401).json({ error: "Неверный логин" });
+        return res.status(401).json({ error: "Неверный логин или пароль" });
       }
 
       const valid = await bcrypt.compare(password, candidate.password);
 
       if (!valid) {
-        return res.status(401).json({ error: "Неверный пароль" });
+        return res.status(401).json({ error: "Неверный логин или пароль" });
       }
 
       const payload = {
