@@ -3,22 +3,31 @@ const Pol = require("../models/Pol.model.js");
 module.exports.polController = {
   getAllClin: async (req, res) => {
     try {
-      const getAllClin = await Pol.find({});
-      res.json(getAllClin);
-    } catch (err) {
-      res.json({ error: err });
+      const getAllClin = await Pol.find();
+
+      return res.json(getAllClin);
+    } catch (error) {
+      return res.status(400).json({
+        error: "Ошибка при выводе всех клиник: " + error.toString(),
+      });
     }
   },
+
   getClinById: async (req, res) => {
     try {
       const getClinById = await Pol.findById(req.params.id);
-      res.json(getClinById);
-    } catch (err) {
-      res.json({ error: err });
+
+      return res.json(getClinById);
+    } catch (error) {
+      return res.status(400).json({
+        error: "Ошибка при выводе клиники по id: " + error.toString(),
+      });
     }
   },
+
   regClin: async (req, res) => {
     const { name, desc, photo, place, coordinates } = req.body;
+
     try {
       const addClin = await Pol.create({
         name,
@@ -27,9 +36,12 @@ module.exports.polController = {
         place,
         coordinates,
       });
-      res.json(addClin);
-    } catch (err) {
-      res.json({ error: err });
+
+      return res.json(addClin);
+    } catch (error) {
+      return res.status(400).json({
+        error: "Ошибка при добавлении клиники: " + error.toString(),
+      });
     }
   },
 };

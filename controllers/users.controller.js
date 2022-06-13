@@ -1,4 +1,3 @@
-const hash = require("bcrypt");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
@@ -40,13 +39,13 @@ module.exports.usersController = {
       const candidate = await User.findOne({ login });
 
       if (!candidate) {
-        return res.status(401).json({ error: "Неверный логин" });
+        return res.status(401).json({ error: "Неверный логин или пароль" });
       }
 
       const valid = await bcrypt.compare(password, candidate.password);
 
       if (!valid) {
-        return res.status(401).json({ error: "Неверный пароль" });
+        return res.status(401).json({ error: "Неверный логин или пароль" });
       }
 
       const payload = {
@@ -68,13 +67,14 @@ module.exports.usersController = {
         .json({ error: "Ошибка при авторизации: " + error.toString() });
     }
   },
+
   getUserById: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
       return res.json(user);
     } catch (error) {
       return res
-        .status(401)
+        .status(400)
         .json({ error: "Ошибка при выводе пользователя: " + error.toString() });
     }
   },

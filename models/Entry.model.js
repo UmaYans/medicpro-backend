@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const commentSchema = mongoose.Schema({
-  userName: {
+const entryShema = mongoose.Schema({
+  user: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",
   },
@@ -9,9 +9,9 @@ const commentSchema = mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Doc",
   },
-  text: String,
+  time: String,
 });
 
-const Comment = mongoose.model("Comment", commentSchema);
+const Entry = mongoose.model("Entry", entryShema);
 
-module.exports = Comment;
+module.exports = Entry;
