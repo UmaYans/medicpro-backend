@@ -6,7 +6,7 @@ const router = Router();
 
 router.post("/comment/:id", authMiddlewares, CommentController.postComments);
 router.delete("/comment/:id",authMiddlewares,CommentController.deleteComments);
-router.get("/user", authMiddlewares, CommentController.getCommentsByUser);
-router.get("/doc/:id", CommentController.getCommentsByDoc);
+router.get("/userCom", authMiddlewares, CommentController.getCommentsByUser);
+router.get("/docCom/:id", CommentController.getCommentsByDoc);
 
 module.exports = router;
