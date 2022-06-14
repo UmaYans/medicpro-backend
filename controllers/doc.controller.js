@@ -52,7 +52,7 @@ module.exports.docsController = {
   
   getDocsById: async (req, res) => {
     try {
-      const doc = await Doc.findById(req.params.id);
+      const doc = await Doc.findById(req.params.id).populate("spec place")
 
       return res.json(doc);
     } catch (error) {
@@ -61,5 +61,4 @@ module.exports.docsController = {
       });
     }
   },
-
 };
