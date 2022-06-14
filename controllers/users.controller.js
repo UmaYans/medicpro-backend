@@ -13,7 +13,7 @@ module.exports.usersController = {
       );
 
       if (!hash) {
-        return res.status(400).json({ error: "Ощибка хеширования пароля" });
+        return res.status(400).json({ error: "Ошибка хеширования пароля" });
       }
 
       const user = await User.create({
@@ -28,7 +28,7 @@ module.exports.usersController = {
       return await res.json(user);
     } catch (error) {
       return res.status(401).json({
-        error: "Ошибка при регистрации: " + error.toString(),
+        error: "Логин занят",
       });
     }
   },
