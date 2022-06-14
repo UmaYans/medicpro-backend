@@ -46,7 +46,7 @@ module.exports.CommentController = {
 
   getCommentsByUser: async (req, res) => {
     try {
-      const getComUser = await Comment.find({ userName: req.user.id });
+      const getComUser = await Comment.find({ userName: req.user.id }).populate("doc")
       return res.json(getComUser);
     } catch (error) {
       return res.status(400).json({
