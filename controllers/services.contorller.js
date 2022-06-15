@@ -23,7 +23,7 @@ module.exports.ServiceController = {
 
   getService: async (req, res) => {
     try {
-      const service = await Service.find();
+      const service = await Service.find().populate("doc", "photo");
 
       return res.json(service);
     } catch (error) {
