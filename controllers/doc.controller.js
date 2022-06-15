@@ -60,8 +60,18 @@ module.exports.docsController = {
       return res.json(doc);
     } catch (error) {
       return res.status(400).json({
-        error: "Ошибка при выводе докторв по id: " + error.toString(),
+        error: "Ошибка при выводе докторa по id: " + error.toString(),
       });
     }
   },
+  getDocsPlaceId: async (req, res) => {
+    try {
+      const docs = await Doc.find({place: req.params.id})
+      return res.json(docs);
+    } catch (error) {
+      return res.status(400).json({
+        error: "Ошибка при выводе докторa по поликлинике: " + error.toString(),
+      });
+    }
+  }
 };
