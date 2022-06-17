@@ -4,7 +4,7 @@ const authMiddlewares = require("../models/middlewares/auth.middlewares");
 
 const router = Router();
 
-router.post("/entry", authMiddlewares, entryController.postEntry);
+router.post("/entry/:id", authMiddlewares, entryController.postEntry);
 router.get("/entry", authMiddlewares, entryController.getEntry);
 router.get("/entry/user", authMiddlewares, entryController.getEntryUserId);
 router.get("/entry/:id", authMiddlewares, entryController.getEntryDocId);
