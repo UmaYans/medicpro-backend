@@ -10,9 +10,9 @@ const entryShema = mongoose.Schema({
     ref: "Doc",
   },
   time: {
-    type:String,
+    type: String,
     unique: true,
-  }
+  },
 });
 
 const Entry = mongoose.model("Entry", entryShema);
