@@ -7,8 +7,9 @@ module.exports.CommentController = {
         userName: req.user.id,
         doc: req.params.id,
         text: req.body.text,
-      });
-      return res.json(postCom);
+      })
+      const data = await Comment.findOne(postCom).populate("userName doc")
+      return res.json(data);
     } catch (error) {
       return res.status(400).json({
         error: "Ошибка при добавлении комментария: " + error.toString(),
@@ -35,7 +36,9 @@ module.exports.CommentController = {
 
   getCommentsByDoc: async (req, res) => {
     try {
-      const getComDoc = await Comment.find({ doc: req.params.id });
+      const getComDoc = await Comment.find({ doc: req.params.id }).populate(
+        "userName doc"
+      );
       return res.json(getComDoc);
     } catch (error) {
       return res.status(400).json({
