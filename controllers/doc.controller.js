@@ -41,6 +41,7 @@ module.exports.docsController = {
 
   getDocs: async (req, res) => {
     try {
+
       const docs = await Doc.find().populate("spec")
 
       return res.json(docs);
@@ -53,8 +54,8 @@ module.exports.docsController = {
 
   getDocsById: async (req, res) => {
     try {
-      const doc = await Doc.findById(req.params.id).populate("place spec")
 
+      const doc = await Doc.findById(req.params.id).populate("place spec")
 
       return res.json(doc);
     } catch (error) {

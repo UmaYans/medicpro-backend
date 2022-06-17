@@ -9,7 +9,10 @@ const entryShema = mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Doc",
   },
-  time: String,
+  time: {
+    type:String,
+    unique: true,
+  }
 });
 
 const Entry = mongoose.model("Entry", entryShema);
