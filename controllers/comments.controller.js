@@ -35,7 +35,9 @@ module.exports.CommentController = {
 
   getCommentsByDoc: async (req, res) => {
     try {
-      const getComDoc = await Comment.find({ doc: req.params.id });
+      const getComDoc = await Comment.find({ doc: req.params.id }).populate(
+        "userName"
+      );
       return res.json(getComDoc);
     } catch (error) {
       return res.status(400).json({
@@ -47,7 +49,7 @@ module.exports.CommentController = {
   getCommentsByUser: async (req, res) => {
     try {
       const getComUser = await Comment.find({ userName: req.user.id }).populate(
-        "doc userName"
+        "doc name"
       );
       return res.json(getComUser);
     } catch (error) {
