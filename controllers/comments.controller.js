@@ -7,8 +7,8 @@ module.exports.CommentController = {
         userName: req.user.id,
         doc: req.params.id,
         text: req.body.text,
-      })
-      const data = await Comment.findOne(postCom).populate("userName doc")
+      });
+      const data = await Comment.findOne(postCom).populate("userName doc");
       return res.json(data);
     } catch (error) {
       return res.status(400).json({
@@ -50,7 +50,7 @@ module.exports.CommentController = {
   getCommentsByUser: async (req, res) => {
     try {
       const getComUser = await Comment.find({ userName: req.user.id }).populate(
-        "doc userName"
+        "doc name"
       );
       return res.json(getComUser);
     } catch (error) {
