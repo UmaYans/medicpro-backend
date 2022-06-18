@@ -11,7 +11,6 @@ const entryShema = mongoose.Schema({
   },
   time: {
     type:String,
-    unique: true,
   }
 });
 

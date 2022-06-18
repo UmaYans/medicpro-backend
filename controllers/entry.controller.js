@@ -1,3 +1,4 @@
+const { populate } = require("../models/Entry.model");
 const Entry = require("../models/Entry.model");
 
 module.exports.entryController = {
@@ -31,7 +32,7 @@ module.exports.entryController = {
 
   getEntryUserId: async (req, res) => {
     try {
-      const entry = await Entry.find({ user: req.user.id });
+      const entry = await Entry.find({ user: req.user.id }).populate("user doc")
 
       return res.json(entry);
     } catch (error) {
@@ -45,7 +46,7 @@ module.exports.entryController = {
 
   getEntryDocId: async (req, res) => {
     try {
-      const entry = await Entry.find({ doc: req.params.id });
+      const entry = await Entry.find({ doc: req.params.id })
 
       return res.json(entry);
     } catch (error) {
