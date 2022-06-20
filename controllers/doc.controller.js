@@ -42,7 +42,7 @@ module.exports.docsController = {
   getDocs: async (req, res) => {
     try {
 
-      const docs = await Doc.find().populate("spec")
+      const docs = await Doc.find().populate("spec", "name")
 
       return res.json(docs);
     } catch (error) {
